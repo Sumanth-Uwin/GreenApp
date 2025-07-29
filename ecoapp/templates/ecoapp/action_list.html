@@ -1,0 +1,17 @@
+{% extends 'ecoapp/base.html' %}
+{% block title %}Eco Actions - GreenWorld{% endblock %}
+{% block content %}
+<h2>Eco Actions</h2>
+{% if actions %}
+    <ul class="list-group">
+        {% for action in actions %}
+        <li class="list-group-item">
+            <a href="{% url 'ecoapp:action_detail' action.pk %}">{{ action.title }}</a>
+            <small class="text-muted"> - {{ action.category.name }}</small>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No eco actions found.</p>
+{% endif %}
+{% endblock %}

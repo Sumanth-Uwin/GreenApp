@@ -1,0 +1,90 @@
+[
+  {
+    "model": "ecoapp.ecoaction",
+    "pk": 1,
+    "fields": {
+      "title": "Start a Home Compost Bin",
+      "description": "Reduce kitchen waste by composting organic materials at home.",
+      "category": 1,
+      "user": 1,
+      "created_at": "2025-07-21T12:00:00Z"
+    }
+  },
+  {
+    "model": "ecoapp.ecoaction",
+    "pk": 2,
+    "fields": {
+      "title": "Switch to LED Bulbs",
+      "description": "Save energy by replacing old bulbs with energy-efficient LEDs.",
+      "category": 2,
+      "user": 1,
+      "created_at": "2025-07-20T15:30:00Z"
+    }
+  },
+  {
+    "model": "ecoapp.ecoaction",
+    "pk": 3,
+    "fields": {
+      "title": "Use Public Transport",
+      "description": "Reduce your carbon footprint by taking buses or trains instead of personal cars.",
+      "category": 3,
+      "user": 1,
+      "created_at": "2025-07-19T10:20:00Z"
+    }
+  },
+  {
+    "model": "ecoapp.ecoaction",
+    "pk": 4,
+    "fields": {
+      "title": "Fix Leaky Faucets",
+      "description": "Save water by repairing leaks in your home plumbing.",
+      "category": 4,
+      "user": 1,
+      "created_at": "2025-07-18T08:45:00Z"
+    }
+  },
+  {
+    "model": "ecoapp.ecoaction",
+    "pk": 5,
+    "fields": {
+      "title": "Say No to Plastic Bags",
+      "description": "Bring reusable bags while shopping to avoid single-use plastic.",
+      "category": 5,
+      "user": 1,
+      "created_at": "2025-07-17T14:00:00Z"
+    }
+  },
+  {
+    "model": "ecoapp.ecoaction",
+    "pk": 6,
+    "fields": {
+      "title": "Plant a Tree in Your Backyard",
+      "description": "Trees help clean the air and cool the planet.",
+      "category": 6,
+      "user": 1,
+      "created_at": "2025-07-16T09:30:00Z"
+    }
+  },
+  {
+    "model": "ecoapp.ecoaction",
+    "pk": 7,
+    "fields": {
+      "title": "Use Solar Chargers",
+      "description": "Charge your devices using solar-powered chargers.",
+      "category": 7,
+      "user": 1,
+      "created_at": "2025-07-15T17:25:00Z"
+    }
+  },
+  {
+    "model": "ecoapp.ecoaction",
+    "pk": 8,
+    "fields": {
+      "title": "Buy Second-Hand Clothes",
+      "description": "Reduce fashion waste by supporting thrift stores.",
+      "category": 8,
+      "user": 1,
+      "created_at": "2025-07-14T11:40:00Z"
+    }
+  }
+]

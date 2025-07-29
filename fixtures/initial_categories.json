@@ -1,0 +1,10 @@
+[
+  { "model": "ecoapp.category", "pk": 1, "fields": { "name": "Recycling" } },
+  { "model": "ecoapp.category", "pk": 2, "fields": { "name": "Energy Saving" } },
+  { "model": "ecoapp.category", "pk": 3, "fields": { "name": "Sustainable Transport" } },
+  { "model": "ecoapp.category", "pk": 4, "fields": { "name": "Water Conservation" } },
+  { "model": "ecoapp.category", "pk": 5, "fields": { "name": "Plastic Reduction" } },
+  { "model": "ecoapp.category", "pk": 6, "fields": { "name": "Eco Gardening" } },
+  { "model": "ecoapp.category", "pk": 7, "fields": { "name": "Green Technology" } },
+  { "model": "ecoapp.category", "pk": 8, "fields": { "name": "Sustainable Fashion" } }
+]

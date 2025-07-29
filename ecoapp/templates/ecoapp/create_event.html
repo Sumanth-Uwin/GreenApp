@@ -1,0 +1,302 @@
+{% extends 'ecoapp/base.html' %}
+
+{% block title %}Create Event - GreenTogether{% endblock %}
+
+{% block content %}
+<div class="py-4">
+    <!-- Header -->
+    <div class="card-custom p-4 mb-4">
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <a href="{% url 'ecoapp:event_list' %}" class="btn btn-outline-secondary rounded-circle p-2">
+                <i data-lucide="arrow-left" style="width: 20px; height: 20px;"></i>
+            </a>
+            <div>
+                <h1 class="h2 fw-bold text-dark mb-1">Create Eco Event</h1>
+                <p class="text-muted mb-0">Organize an environmental activity and build community impact</p>
+            </div>
+        </div>
+
+        <!-- Progress Steps -->
+        <div class="d-flex align-items-center gap-3 mb-4">
+            <div class="d-flex align-items-center gap-2">
+                <div class="rounded-circle d-flex align-items-center justify-content-center text-white fw-medium" style="width: 32px; height: 32px; background: var(--green-600);">
+                    1
+                </div>
+                <span class="small fw-medium" style="color: var(--green-600);">Event Details</span>
+            </div>
+            <div class="flex-grow-1" style="height: 2px; background: #e5e7eb;"></div>
+            <div class="d-flex align-items-center gap-2">
+                <div class="rounded-circle d-flex align-items-center justify-content-center text-muted fw-medium" style="width: 32px; height: 32px; background: #e5e7eb;">
+                    2
+                </div>
+                <span class="small text-muted">Review & Publish</span>
+            </div>
+        </div>
+    </div>
+
+    <form method="post" enctype="multipart/form-data" class="row g-4">
+        {% csrf_token %}
+        
+        <!-- Basic Information -->
+        <div class="col-12">
+            <div class="card-custom p-4">
+                <h3 class="h5 fw-bold text-dark mb-4">Basic Information</h3>
+                
+                <div class="row g-3">
+                    <div class="col-12">
+                        <label for="{{ form.title.id_for_label }}" class="form-label fw-medium text-dark">
+                            Event Title *
+                        </label>
+                        {{ form.title }}
+                        {% if form.title.errors %}
+                            <div class="text-danger small mt-1">{{ form.title.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label fw-medium text-dark mb-3">
+                            Event Category *
+                        </label>
+                        <div class="row g-3">
+                            <div class="col-6 col-md-3">
+                                <div class="card border-2 h-100 text-center p-3 category-card" data-category="tree-planting" style="cursor: pointer; transition: all 0.2s;">
+                                    <i data-lucide="tree-pine" style="width: 24px; height: 24px; margin: 0 auto 0.5rem; color: var(--green-600);"></i>
+                                    <span class="small fw-medium">Tree Planting</span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="card border-2 h-100 text-center p-3 category-card" data-category="beach-cleanup" style="cursor: pointer; transition: all 0.2s;">
+                                    <i data-lucide="waves" style="width: 24px; height: 24px; margin: 0 auto 0.5rem; color: #3b82f6;"></i>
+                                    <span class="small fw-medium">Beach Cleanup</span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="card border-2 h-100 text-center p-3 category-card" data-category="workshop" style="cursor: pointer; transition: all 0.2s;">
+                                    <i data-lucide="recycle" style="width: 24px; height: 24px; margin: 0 auto 0.5rem; color: #8b5cf6;"></i>
+                                    <span class="small fw-medium">Workshop</span>
+                                </div>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="card border-2 h-100 text-center p-3 category-card" data-category="awareness" style="cursor: pointer; transition: all 0.2s;">
+                                    <i data-lucide="lightbulb" style="width: 24px; height: 24px; margin: 0 auto 0.5rem; color: #eab308;"></i>
+                                    <span class="small fw-medium">Awareness Campaign</span>
+                                </div>
+                            </div>
+                        </div>
+                        {{ form.category }}
+                        {% if form.category.errors %}
+                            <div class="text-danger small mt-1">{{ form.category.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12">
+                        <label for="{{ form.description.id_for_label }}" class="form-label fw-medium text-dark">
+                            Description *
+                        </label>
+                        {{ form.description }}
+                        {% if form.description.errors %}
+                            <div class="text-danger small mt-1">{{ form.description.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Date & Location -->
+        <div class="col-12">
+            <div class="card-custom p-4">
+                <h3 class="h5 fw-bold text-dark mb-4">Date & Location</h3>
+                
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="{{ form.date.id_for_label }}" class="form-label fw-medium text-dark">
+                            <i data-lucide="calendar" style="width: 16px; height: 16px; margin-right: 0.25rem;"></i>
+                            Event Date *
+                        </label>
+                        {{ form.date }}
+                        {% if form.date.errors %}
+                            <div class="text-danger small mt-1">{{ form.date.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="{{ form.time.id_for_label }}" class="form-label fw-medium text-dark">
+                            <i data-lucide="clock" style="width: 16px; height: 16px; margin-right: 0.25rem;"></i>
+                            Time
+                        </label>
+                        {{ form.time }}
+                        {% if form.time.errors %}
+                            <div class="text-danger small mt-1">{{ form.time.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="{{ form.location.id_for_label }}" class="form-label fw-medium text-dark">
+                            <i data-lucide="map-pin" style="width: 16px; height: 16px; margin-right: 0.25rem;"></i>
+                            Location *
+                        </label>
+                        {{ form.location }}
+                        {% if form.location.errors %}
+                            <div class="text-danger small mt-1">{{ form.location.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="{{ form.city.id_for_label }}" class="form-label fw-medium text-dark">
+                            <i data-lucide="building" style="width: 16px; height: 16px; margin-right: 0.25rem;"></i>
+                            City *
+                        </label>
+                        {{ form.city }}
+                        {% if form.city.errors %}
+                            <div class="text-danger small mt-1">{{ form.city.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Details -->
+        <div class="col-12">
+            <div class="card-custom p-4">
+                <h3 class="h5 fw-bold text-dark mb-4">Event Details</h3>
+                
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="{{ form.max_attendees.id_for_label }}" class="form-label fw-medium text-dark">
+                            <i data-lucide="users" style="width: 16px; height: 16px; margin-right: 0.25rem;"></i>
+                            Maximum Attendees
+                        </label>
+                        {{ form.max_attendees }}
+                        {% if form.max_attendees.errors %}
+                            <div class="text-danger small mt-1">{{ form.max_attendees.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="{{ form.difficulty.id_for_label }}" class="form-label fw-medium text-dark">
+                            Difficulty Level
+                        </label>
+                        {{ form.difficulty }}
+                        {% if form.difficulty.errors %}
+                            <div class="text-danger small mt-1">{{ form.difficulty.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12">
+                        <label for="{{ form.expected_impact.id_for_label }}" class="form-label fw-medium text-dark">
+                            Expected Environmental Impact
+                        </label>
+                        {{ form.expected_impact }}
+                        {% if form.expected_impact.errors %}
+                            <div class="text-danger small mt-1">{{ form.expected_impact.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-12">
+                        <label for="{{ form.requirements.id_for_label }}" class="form-label fw-medium text-dark">
+                            Requirements & What to Bring
+                        </label>
+                        {{ form.requirements }}
+                        {% if form.requirements.errors %}
+                            <div class="text-danger small mt-1">{{ form.requirements.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Event Image -->
+        <div class="col-12">
+            <div class="card-custom p-4">
+                <h3 class="h5 fw-bold text-dark mb-4">Event Image</h3>
+                
+                <div class="border-2 border-dashed rounded-3 p-5 text-center" style="border-color: #d1d5db;">
+                    <i data-lucide="image" style="width: 48px; height: 48px; color: #9ca3af; margin: 0 auto 1rem;"></i>
+                    <p class="text-muted mb-2">Upload an inspiring image for your event</p>
+                    <p class="small text-muted mb-3">PNG, JPG up to 10MB</p>
+                    {{ form.image }}
+                    {% if form.image.errors %}
+                        <div class="text-danger small mt-2">{{ form.image.errors.0 }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="col-12">
+            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-end">
+                <button type="button" class="btn btn-secondary-custom">
+                    Save as Draft
+                </button>
+                <button type="submit" class="btn btn-primary-custom d-flex align-items-center justify-content-center gap-2">
+                    <i data-lucide="save" style="width: 16px; height: 16px;"></i>
+                    <span>Create Event</span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    /* Form styling */
+    .form-control, .form-select, textarea {
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .form-control:focus, .form-select:focus, textarea:focus {
+        border-color: transparent;
+        box-shadow: 0 0 0 2px var(--green-500);
+    }
+    
+    textarea {
+        resize: none;
+        min-height: 100px;
+    }
+    
+    /* Category selection */
+    .category-card:hover {
+        border-color: var(--green-300) !important;
+        background-color: var(--green-50) !important;
+    }
+    
+    .category-card.selected {
+        border-color: var(--green-500) !important;
+        background-color: var(--green-50) !important;
+    }
+</style>
+
+<script>
+    // Category selection functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const categoryCards = document.querySelectorAll('.category-card');
+        const categoryInput = document.querySelector('input[name="category"]');
+        
+        categoryCards.forEach(card => {
+            card.addEventListener('click', function() {
+                // Remove selected class from all cards
+                categoryCards.forEach(c => c.classList.remove('selected'));
+                
+                // Add selected class to clicked card
+                this.classList.add('selected');
+                
+                // Set the category value from data attribute
+                const categoryValue = this.getAttribute('data-category');
+                if (categoryInput) {
+                    categoryInput.value = categoryValue;
+                }
+            });
+        });
+        
+        // Set initial selection if category has a value
+        if (categoryInput && categoryInput.value) {
+            const selectedCard = document.querySelector(`[data-category="${categoryInput.value}"]`);
+            if (selectedCard) {
+                selectedCard.classList.add('selected');
+            }
+        }
+    });
+</script>
+{% endblock %}

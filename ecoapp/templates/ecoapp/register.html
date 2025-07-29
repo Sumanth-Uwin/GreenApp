@@ -1,0 +1,168 @@
+{% extends 'ecoapp/base.html' %}
+
+{% block title %}Register - GreenTogether{% endblock %}
+
+{% block content %}
+<div class="py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card-custom p-5">
+                <!-- Header -->
+                <div class="text-center mb-4">
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="brand-icon">
+                            <i data-lucide="leaf" style="color: white; width: 32px; height: 32px;"></i>
+                        </div>
+                    </div>
+                    <h1 class="h3 fw-bold text-dark mb-2">Join the Movement</h1>
+                    <p class="text-muted">Create your account and start making a difference</p>
+                </div>
+
+                <!-- Registration Form -->
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="{{ form.username.id_for_label }}" class="form-label fw-medium text-dark">
+                            <i data-lucide="user" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                            Username *
+                        </label>
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <div class="text-danger small mt-1">{{ form.username.errors.0 }}</div>
+                        {% endif %}
+                        {% if form.username.help_text %}
+                            <div class="small text-muted mt-1">{{ form.username.help_text }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.email.id_for_label }}" class="form-label fw-medium text-dark">
+                            <i data-lucide="mail" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                            Email Address *
+                        </label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="{{ form.password1.id_for_label }}" class="form-label fw-medium text-dark">
+                            <i data-lucide="lock" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                            Password *
+                        </label>
+                        {{ form.password1 }}
+                        {% if form.password1.errors %}
+                            <div class="text-danger small mt-1">{{ form.password1.errors.0 }}</div>
+                        {% endif %}
+                        {% if form.password1.help_text %}
+                            <div class="small text-muted mt-1">{{ form.password1.help_text }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="{{ form.password2.id_for_label }}" class="form-label fw-medium text-dark">
+                            <i data-lucide="lock" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                            Confirm Password *
+                        </label>
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                            <div class="text-danger small mt-1">{{ form.password2.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Terms and Conditions -->
+                    <div class="form-check mb-4">
+                        <input class="form-check-input" type="checkbox" id="terms" name="terms" required>
+                        <label class="form-check-label small text-muted" for="terms">
+                            I agree to the <a href="#" class="text-decoration-none" style="color: var(--green-600);">Terms of Service</a> 
+                            and <a href="#" class="text-decoration-none" style="color: var(--green-600);">Privacy Policy</a>
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary-custom w-100 mb-4">
+                        <i data-lucide="user-plus" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                        Create Account
+                    </button>
+
+                    <!-- Divider -->
+                    <div class="text-center mb-4">
+                        <div class="d-flex align-items-center">
+                            <hr class="flex-grow-1">
+                            <span class="px-3 small text-muted">or</span>
+                            <hr class="flex-grow-1">
+                        </div>
+                    </div>
+
+                    <!-- Login Link -->
+                    <div class="text-center">
+                        <p class="text-muted mb-0">
+                            Already have an account? 
+                            <a href="{% url 'ecoapp:login' %}" class="text-decoration-none fw-medium" style="color: var(--green-600);">
+                                Sign in here
+                            </a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Benefits Section -->
+            <div class="mt-4">
+                <div class="p-4 rounded-3" style="background: var(--green-50); border: 1px solid var(--green-200);">
+                    <h6 class="fw-bold mb-3" style="color: var(--green-700);">Why Join GreenTogether?</h6>
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="d-flex align-items-center gap-2">
+                                <i data-lucide="calendar" style="width: 16px; height: 16px; color: var(--green-600);"></i>
+                                <span class="small text-muted">Host eco events</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center gap-2">
+                                <i data-lucide="users" style="width: 16px; height: 16px; color: var(--green-600);"></i>
+                                <span class="small text-muted">Join community</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center gap-2">
+                                <i data-lucide="award" style="width: 16px; height: 16px; color: var(--green-600);"></i>
+                                <span class="small text-muted">Track impact</span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="d-flex align-items-center gap-2">
+                                <i data-lucide="heart" style="width: 16px; height: 16px; color: var(--green-600);"></i>
+                                <span class="small text-muted">Make difference</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control {
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        padding: 0.75rem 1rem;
+        transition: all 0.2s ease-in-out;
+    }
+    
+    .form-control:focus {
+        border-color: transparent;
+        box-shadow: 0 0 0 2px var(--green-500);
+    }
+    
+    .form-check-input:checked {
+        background-color: var(--green-600);
+        border-color: var(--green-600);
+    }
+    
+    .form-check-input:focus {
+        box-shadow: 0 0 0 0.2rem rgba(34, 197, 94, 0.25);
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'ecoapp/base.html' %}
+{% block content %}
+<h2>{{ event.title }}</h2>
+{% if event.image %}
+  <img src="{{ event.image.url }}" width="300" class="mb-3" />
+{% endif %}
+<p><strong>Location:</strong> {{ event.location }}, {{ event.city }}</p>
+<p><strong>Date & Time:</strong> {{ event.date }} at {{ event.time }}</p>
+<p><strong>Description:</strong><br>{{ event.description }}</p>
+<p><strong>Posted by:</strong> {{ event.user.username }}</p>
+<p><strong>Views:</strong> {{ event.views }}</p>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'ecoapp/base.html' %}
+
+{% block title %}My Uploads{% endblock %}
+
+{% block content %}
+    <h2>My Eco Action Uploads</h2>
+
+    {% if uploads %}
+        <ul>
+            {% for action in uploads %}
+                <li class="mb-3">
+                    <strong>{{ action.title }}</strong> <br>
+                    {{ action.description|truncatewords:20 }} <br>
+                    <small>Uploaded on {{ action.uploaded_at|date:"F j, Y, g:i a" }}</small><br>
+                    <a href="{{ action.file.url }}" target="_blank" rel="noopener noreferrer">View File</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not uploaded any eco actions yet.</p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'ecoapp/base.html' %}
+
+{% block title %}Your Visit History{% endblock %}
+
+{% block content %}
+    <h2>Your Visit History</h2>
+    <hr>
+
+    <!-- ✅ Login Activity from Database -->
+    <h4>Login Activity (Tracked via Database)</h4>
+    <p><strong>Total Login Days:</strong> {{ total_logins }}</p>
+
+    {% if login_dates %}
+        <ul>
+            {% for date in login_dates %}
+                <li>{{ date }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No login activity recorded yet.</p>
+    {% endif %}
+
+    <hr>
+
+    <!-- ✅ Site Visit Info from Cookies -->
+    <h4>Site Visit Info (Tracked via Cookies)</h4>
+    <p><strong>Total Visits:</strong> {{ visit_count }}</p>
+
+    {% if first_visit %}
+        <p>This is your <strong>first visit</strong>. Welcome!</p>
+    {% else %}
+        <p><strong>Last Visit:</strong> {{ last_visit }}</p>
+    {% endif %}
+
+    <p><strong>Current Time:</strong> {{ current_time }}</p>
+{% endblock %}

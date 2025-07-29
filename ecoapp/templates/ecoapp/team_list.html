@@ -1,0 +1,34 @@
+{% extends 'ecoapp/base.html' %}
+{% block title %}Our Team{% endblock %}
+
+{% block content %}
+<h2>Our Team</h2>
+
+<ul>
+    {% for member in team_members %}
+    <li>
+        <h3>{{ member.name }}</h3>
+        <p><strong>Role:</strong> {{ member.role }}</p>
+        <p>{{ member.bio }}</p>
+        {% if member.photo %}
+            <img src="{{ member.photo.url }}" alt="{{ member.name }}" style="max-width:150px;"/>
+        {% endif %}
+        {% if request.user.is_staff %}
+            <p>
+                <a href="{% url 'ecoapp:team_member_edit' member.pk %}">Edit</a> |
+                <a href="{% url 'ecoapp:team_delete' member.pk %}"
+                   onclick="return confirm('Are you sure you want to delete this team member?');">
+                   Delete
+                </a>
+            </p>
+        {% endif %}
+    </li>
+    {% empty %}
+    <li>No team members found.</li>
+    {% endfor %}
+</ul>
+
+{% if request.user.is_staff %}
+    <p><a href="{% url 'ecoapp:team_member_add' %}">Add New Team Member</a></p>
+{% endif %}
+{% endblock %}

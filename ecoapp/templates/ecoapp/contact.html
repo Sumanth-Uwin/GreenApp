@@ -1,0 +1,119 @@
+{% extends 'ecoapp/base.html' %}
+
+{% block title %}Contact Us - GreenTogether{% endblock %}
+
+{% block content %}
+<div class="py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <!-- Header -->
+            <div class="text-center mb-5">
+                <div class="d-flex justify-content-center mb-3">
+                    <div class="p-3 rounded-3" style="background: linear-gradient(135deg, var(--green-100), var(--emerald-100));">
+                        <i data-lucide="mail" style="width: 32px; height: 32px; color: var(--green-600);"></i>
+                    </div>
+                </div>
+                <h1 class="h2 fw-bold text-dark mb-3">Get in Touch</h1>
+                <p class="text-muted">Have questions about eco-events or want to collaborate? We'd love to hear from you!</p>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="card-custom p-5">
+                <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="row g-4">
+                        <div class="col-md-6">
+                            <label for="{{ form.name.id_for_label }}" class="form-label fw-medium text-dark">
+                                <i data-lucide="user" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                                Full Name *
+                            </label>
+                            {{ form.name }}
+                            {% if form.name.errors %}
+                                <div class="text-danger small mt-1">{{ form.name.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="{{ form.email.id_for_label }}" class="form-label fw-medium text-dark">
+                                <i data-lucide="mail" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                                Email Address *
+                            </label>
+                            {{ form.email }}
+                            {% if form.email.errors %}
+                                <div class="text-danger small mt-1">{{ form.email.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label for="{{ form.subject.id_for_label }}" class="form-label fw-medium text-dark">
+                                <i data-lucide="tag" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                                Subject *
+                            </label>
+                            {{ form.subject }}
+                            {% if form.subject.errors %}
+                                <div class="text-danger small mt-1">{{ form.subject.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <label for="{{ form.message.id_for_label }}" class="form-label fw-medium text-dark">
+                                <i data-lucide="message-square" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                                Message *
+                            </label>
+                            {{ form.message }}
+                            {% if form.message.errors %}
+                                <div class="text-danger small mt-1">{{ form.message.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary-custom">
+                                <i data-lucide="send" style="width: 16px; height: 16px; margin-right: 0.5rem;"></i>
+                                Send Message
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="row g-4 mt-4">
+                <div class="col-md-4">
+                    <div class="card-custom p-4 text-center h-100">
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="p-3 rounded-3" style="background: var(--green-50);">
+                                <i data-lucide="mail" style="width: 24px; height: 24px; color: var(--green-600);"></i>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-2">Email Us</h6>
+                        <p class="text-muted small mb-0">hello@greentogether.org</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-custom p-4 text-center h-100">
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="p-3 rounded-3" style="background: var(--green-50);">
+                                <i data-lucide="phone" style="width: 24px; height: 24px; color: var(--green-600);"></i>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-2">Call Us</h6>
+                        <p class="text-muted small mb-0">+1 (555) 123-4567</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card-custom p-4 text-center h-100">
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="p-3 rounded-3" style="background: var(--green-50);">
+                                <i data-lucide="map-pin" style="width: 24px; height: 24px; color: var(--green-600);"></i>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold text-dark mb-2">Visit Us</h6>
+                        <p class="text-muted small mb-0">San Francisco, CA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,326 @@
+{% extends 'ecoapp/base.html' %}
+
+{% block title %}GreenTogether - Discover Eco-Friendly Events{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 mb-5" style="background: linear-gradient(135deg, var(--green-50) 0%, var(--emerald-50) 50%, #eff6ff 100%); border-radius: 2rem; position: relative; overflow: hidden;">
+    <!-- Background Pattern -->
+    <div style="position: absolute; inset: 0; opacity: 0.05;">
+        <div style="position: absolute; top: 2.5rem; left: 2.5rem; width: 5rem; height: 5rem; background: var(--green-500); border-radius: 50%;"></div>
+        <div style="position: absolute; top: 8rem; right: 5rem; width: 4rem; height: 4rem; background: #3b82f6; border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: 5rem; left: 25%; width: 3rem; height: 3rem; background: var(--emerald-500); border-radius: 50%;"></div>
+        <div style="position: absolute; bottom: 8rem; right: 33%; width: 2rem; height: 2rem; background: var(--green-400); border-radius: 50%;"></div>
+    </div>
+
+    <div class="container text-center position-relative">
+        <!-- Badge -->
+        <div class="d-flex justify-content-center mb-4">
+            <div class="d-flex align-items-center gap-2 px-4 py-2 rounded-pill" style="background: var(--green-100);">
+                <i data-lucide="leaf" style="width: 16px; height: 16px; color: var(--green-600);"></i>
+                <span style="color: var(--green-700); font-size: 0.875rem; font-weight: 500;">Building a Sustainable Future Together</span>
+            </div>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="display-3 fw-bold text-dark mb-4" style="line-height: 1.1;">
+            Discover & Host
+            <span class="d-block" style="background: linear-gradient(135deg, var(--green-600), var(--emerald-600)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                Eco-Friendly Events
+            </span>
+        </h1>
+
+        <p class="lead text-muted mb-5 mx-auto" style="max-width: 48rem;">
+            Join a community of environmental champions. Explore tree-planting drives, beach clean-ups, 
+            zero-waste workshops, and more. Together, we can make a meaningful impact on our planet.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center mb-5">
+            <a href="{% url 'ecoapp:event_list' %}" class="btn btn-primary-custom d-flex align-items-center justify-content-center gap-2">
+                <span>Explore Events</span>
+                <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+            </a>
+            
+            {% if user.is_authenticated %}
+                <a href="{% url 'ecoapp:create_event' %}" class="btn btn-secondary-custom d-flex align-items-center justify-content-center gap-2">
+                    <i data-lucide="plus" style="width: 20px; height: 20px;"></i>
+                    <span>Host an Event</span>
+                </a>
+            {% else %}
+                <a href="{% url 'ecoapp:register' %}" class="btn btn-secondary-custom d-flex align-items-center justify-content-center gap-2">
+                    <i data-lucide="user-plus" style="width: 20px; height: 20px;"></i>
+                    <span>Join Community</span>
+                </a>
+            {% endif %}
+        </div>
+
+        <!-- Stats -->
+        <div class="row g-4">
+            <div class="col-6 col-md-3">
+                <div class="card-custom p-4 text-center h-100">
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="p-3 rounded-3" style="background: linear-gradient(135deg, var(--green-100), var(--emerald-100));">
+                            <i data-lucide="users" style="width: 24px; height: 24px; color: var(--green-600);"></i>
+                        </div>
+                    </div>
+                    <div class="h4 fw-bold text-dark mb-1">12,500+</div>
+                    <div class="small text-muted">Active Members</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card-custom p-4 text-center h-100">
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="p-3 rounded-3" style="background: linear-gradient(135deg, var(--green-100), var(--emerald-100));">
+                            <i data-lucide="calendar" style="width: 24px; height: 24px; color: var(--green-600);"></i>
+                        </div>
+                    </div>
+                    <div class="h4 fw-bold text-dark mb-1">850+</div>
+                    <div class="small text-muted">Events Hosted</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card-custom p-4 text-center h-100">
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="p-3 rounded-3" style="background: linear-gradient(135deg, var(--green-100), var(--emerald-100));">
+                            <i data-lucide="tree-pine" style="width: 24px; height: 24px; color: var(--green-600);"></i>
+                        </div>
+                    </div>
+                    <div class="h4 fw-bold text-dark mb-1">25,000+</div>
+                    <div class="small text-muted">Trees Planted</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="card-custom p-4 text-center h-100">
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="p-3 rounded-3" style="background: linear-gradient(135deg, var(--green-100), var(--emerald-100));">
+                            <i data-lucide="waves" style="width: 24px; height: 24px; color: var(--green-600);"></i>
+                        </div>
+                    </div>
+                    <div class="h4 fw-bold text-dark mb-1">200+</div>
+                    <div class="small text-muted">Beach Cleanups</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Events Section -->
+<section class="py-5">
+    <div class="text-center mb-5">
+        <h2 class="h1 fw-bold text-dark mb-3">Featured Eco Events</h2>
+        <p class="lead text-muted mx-auto" style="max-width: 32rem;">
+            Discover meaningful ways to contribute to environmental conservation in your community
+        </p>
+    </div>
+
+    <div class="row g-4 mb-5">
+        <!-- Sample Event Cards -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card-custom h-100 overflow-hidden">
+                <div style="height: 12rem; background: linear-gradient(135deg, var(--green-400), var(--emerald-500)); position: relative;">
+                    <div class="position-absolute top-0 start-0 m-3">
+                        <span class="badge rounded-pill" style="background: var(--green-100); color: var(--green-700);">Beginner</span>
+                    </div>
+                    <div class="position-absolute top-0 end-0 m-3 d-flex gap-2">
+                        <button class="btn btn-sm rounded-circle p-2" style="background: rgba(255,255,255,0.9);">
+                            <i data-lucide="heart" style="width: 16px; height: 16px; color: #6b7280;"></i>
+                        </button>
+                        <button class="btn btn-sm rounded-circle p-2" style="background: rgba(255,255,255,0.9);">
+                            <i data-lucide="share-2" style="width: 16px; height: 16px; color: #6b7280;"></i>
+                        </button>
+                    </div>
+                    <div class="position-absolute bottom-0 start-0 end-0 p-3 text-white">
+                        <i data-lucide="tree-pine" style="width: 48px; height: 48px; opacity: 0.7;"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <small class="text-success fw-medium">Green NYC Initiative</small>
+                        <div class="d-flex align-items-center gap-1 small text-muted">
+                            <i data-lucide="users" style="width: 16px; height: 16px;"></i>
+                            <span>45/60</span>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-3">Community Tree Planting Drive</h5>
+                    <p class="text-muted mb-3 small">Join us for a day of environmental action as we plant native trees to restore our urban forest.</p>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 small text-muted">
+                            <i data-lucide="calendar" style="width: 16px; height: 16px; color: var(--green-500);"></i>
+                            <span>March 15, 2025</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-2 small text-muted">
+                            <i data-lucide="clock" style="width: 16px; height: 16px; color: var(--green-500);"></i>
+                            <span>9:00 AM - 2:00 PM</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 small text-muted">
+                            <i data-lucide="map-pin" style="width: 16px; height: 16px; color: var(--green-500);"></i>
+                            <span>Central Park, NYC</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-3 mb-3" style="background: var(--green-50); border: 1px solid var(--green-200);">
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <i data-lucide="leaf" style="width: 16px; height: 16px; color: var(--green-600);"></i>
+                            <span class="small fw-medium" style="color: var(--green-700);">Expected Impact</span>
+                        </div>
+                        <p class="small mb-0" style="color: var(--green-600);">60 trees planted</p>
+                    </div>
+
+                    <button class="btn btn-primary-custom w-100">Join Event</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card-custom h-100 overflow-hidden">
+                <div style="height: 12rem; background: linear-gradient(135deg, #3b82f6, #1d4ed8); position: relative;">
+                    <div class="position-absolute top-0 start-0 m-3">
+                        <span class="badge rounded-pill" style="background: rgba(255,255,255,0.2); color: white;">Easy</span>
+                    </div>
+                    <div class="position-absolute top-0 end-0 m-3 d-flex gap-2">
+                        <button class="btn btn-sm rounded-circle p-2" style="background: rgba(255,255,255,0.9);">
+                            <i data-lucide="heart" style="width: 16px; height: 16px; color: #6b7280;"></i>
+                        </button>
+                        <button class="btn btn-sm rounded-circle p-2" style="background: rgba(255,255,255,0.9);">
+                            <i data-lucide="share-2" style="width: 16px; height: 16px; color: #6b7280;"></i>
+                        </button>
+                    </div>
+                    <div class="position-absolute bottom-0 start-0 end-0 p-3 text-white">
+                        <i data-lucide="waves" style="width: 48px; height: 48px; opacity: 0.7;"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <small class="text-primary fw-medium">Ocean Guardians</small>
+                        <div class="d-flex align-items-center gap-1 small text-muted">
+                            <i data-lucide="users" style="width: 16px; height: 16px;"></i>
+                            <span>32/50</span>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-3">Ocean Beach Cleanup</h5>
+                    <p class="text-muted mb-3 small">Help protect marine life by removing plastic waste and debris from our beautiful coastline.</p>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 small text-muted">
+                            <i data-lucide="calendar" style="width: 16px; height: 16px; color: #3b82f6;"></i>
+                            <span>March 18, 2025</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-2 small text-muted">
+                            <i data-lucide="clock" style="width: 16px; height: 16px; color: #3b82f6;"></i>
+                            <span>7:00 AM - 11:00 AM</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 small text-muted">
+                            <i data-lucide="map-pin" style="width: 16px; height: 16px; color: #3b82f6;"></i>
+                            <span>Santa Monica Beach, CA</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-3 mb-3" style="background: #eff6ff; border: 1px solid #dbeafe;">
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <i data-lucide="leaf" style="width: 16px; height: 16px; color: #3b82f6;"></i>
+                            <span class="small fw-medium text-primary">Expected Impact</span>
+                        </div>
+                        <p class="small mb-0 text-primary">500 lbs waste removed</p>
+                    </div>
+
+                    <button class="btn btn-primary-custom w-100">Join Event</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card-custom h-100 overflow-hidden">
+                <div style="height: 12rem; background: linear-gradient(135deg, #8b5cf6, #7c3aed); position: relative;">
+                    <div class="position-absolute top-0 start-0 m-3">
+                        <span class="badge rounded-pill" style="background: rgba(255,255,255,0.2); color: white;">Intermediate</span>
+                    </div>
+                    <div class="position-absolute top-0 end-0 m-3 d-flex gap-2">
+                        <button class="btn btn-sm rounded-circle p-2" style="background: rgba(255,255,255,0.9);">
+                            <i data-lucide="heart" style="width: 16px; height: 16px; color: #6b7280;"></i>
+                        </button>
+                        <button class="btn btn-sm rounded-circle p-2" style="background: rgba(255,255,255,0.9);">
+                            <i data-lucide="share-2" style="width: 16px; height: 16px; color: #6b7280;"></i>
+                        </button>
+                    </div>
+                    <div class="position-absolute bottom-0 start-0 end-0 p-3 text-white">
+                        <i data-lucide="recycle" style="width: 48px; height: 48px; opacity: 0.7;"></i>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <small class="fw-medium" style="color: #8b5cf6;">Sustainable Living Co.</small>
+                        <div class="d-flex align-items-center gap-1 small text-muted">
+                            <i data-lucide="users" style="width: 16px; height: 16px;"></i>
+                            <span>18/25</span>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-3">Zero Waste Living Workshop</h5>
+                    <p class="text-muted mb-3 small">Learn practical tips and techniques to reduce waste in your daily life and create a sustainable home.</p>
+                    
+                    <div class="mb-3">
+                        <div class="d-flex align-items-center gap-2 mb-2 small text-muted">
+                            <i data-lucide="calendar" style="width: 16px; height: 16px; color: #8b5cf6;"></i>
+                            <span>March 22, 2025</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 mb-2 small text-muted">
+                            <i data-lucide="clock" style="width: 16px; height: 16px; color: #8b5cf6;"></i>
+                            <span>2:00 PM - 5:00 PM</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2 small text-muted">
+                            <i data-lucide="map-pin" style="width: 16px; height: 16px; color: #8b5cf6;"></i>
+                            <span>Community Center, Portland</span>
+                        </div>
+                    </div>
+
+                    <div class="p-3 rounded-3 mb-3" style="background: #faf5ff; border: 1px solid #e9d5ff;">
+                        <div class="d-flex align-items-center gap-2 mb-1">
+                            <i data-lucide="leaf" style="width: 16px; height: 16px; color: #8b5cf6;"></i>
+                            <span class="small fw-medium" style="color: #8b5cf6;">Expected Impact</span>
+                        </div>
+                        <p class="small mb-0" style="color: #8b5cf6;">Reduce 80% household waste</p>
+                    </div>
+
+                    <button class="btn btn-primary-custom w-100">Join Event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a href="{% url 'ecoapp:event_list' %}" class="btn btn-secondary-custom">
+            View All Events
+        </a>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-5 my-5">
+    <div class="card-custom p-5 text-center" style="background: linear-gradient(135deg, var(--green-600), var(--emerald-600));">
+        <div class="text-white">
+            <h2 class="h1 fw-bold mb-4">Ready to Make a Difference?</h2>
+            <p class="lead mb-4 opacity-75">
+                Join our community of environmental champions and start creating positive change today.
+            </p>
+            <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'ecoapp:create_event' %}" class="btn btn-light btn-lg fw-semibold">
+                        <i data-lucide="plus" style="width: 20px; height: 20px; margin-right: 0.5rem;"></i>
+                        Host Your First Event
+                    </a>
+                {% else %}
+                    <a href="{% url 'ecoapp:register' %}" class="btn btn-light btn-lg fw-semibold">
+                        <i data-lucide="user-plus" style="width: 20px; height: 20px; margin-right: 0.5rem;"></i>
+                        Join the Movement
+                    </a>
+                {% endif %}
+                <a href="{% url 'ecoapp:contact' %}" class="btn btn-outline-light btn-lg fw-semibold">
+                    <i data-lucide="mail" style="width: 20px; height: 20px; margin-right: 0.5rem;"></i>
+                    Get in Touch
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
