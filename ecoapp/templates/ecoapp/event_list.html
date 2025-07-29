@@ -26,12 +26,6 @@
                             <div class="flex-grow-1">
                                 <div class="d-flex align-items-center gap-2 mb-2">
                                     <h5 class="fw-bold text-dark mb-0">{{ event.title }}</h5>
-                                    {% now "Y-m-d" as today %}
-                                    {% if event.date >= today %}
-                                        <span class="badge rounded-pill" style="background: #dbeafe; color: #1e40af;">upcoming</span>
-                                    {% else %}
-                                        <span class="badge rounded-pill" style="background: var(--green-100); color: var(--green-700);">completed</span>
-                                    {% endif %}
                                 </div>
 
                                 <div class="row g-3 mb-3">
@@ -76,12 +70,6 @@
                                 <a href="{% url 'ecoapp:event_detail' event.pk %}" class="btn btn-sm btn-outline-primary rounded-circle p-2" title="View Details">
                                     <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
                                 </a>
-                                <button class="btn btn-sm btn-outline-success rounded-circle p-2" title="Edit Event">
-                                    <i data-lucide="edit-3" style="width: 16px; height: 16px;"></i>
-                                </button>
-                                <button class="btn btn-sm btn-outline-danger rounded-circle p-2" title="Delete Event">
-                                    <i data-lucide="trash-2" style="width: 16px; height: 16px;"></i>
-                                </button>
                             </div>
                         </div>
 

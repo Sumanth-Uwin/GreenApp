@@ -318,16 +318,6 @@
             <i data-lucide="menu" style="color: #6b7280; width: 20px; height: 20px;"></i>
         </button>
 
-        <!-- Search Bar (Desktop) -->
-        <div class="search-container d-none d-md-block">
-            <form method="GET" action="{% url 'ecoapp:search' %}">
-                <div class="position-relative">
-                    <i data-lucide="search" class="search-icon" style="width: 16px; height: 16px;"></i>
-                    <input type="text" name="query" class="search-input" placeholder="Search eco-friendly events..." value="{{ request.GET.query }}">
-                </div>
-            </form>
-        </div>
-
         <div class="collapse navbar-collapse" id="navbarNav">
             <!-- Main Navigation -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">

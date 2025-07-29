@@ -155,56 +155,6 @@
             </div>
         </div>
 
-        <!-- Event Details -->
-        <div class="col-12">
-            <div class="card-custom p-4">
-                <h3 class="h5 fw-bold text-dark mb-4">Event Details</h3>
-                
-                <div class="row g-3">
-                    <div class="col-md-6">
-                        <label for="{{ form.max_attendees.id_for_label }}" class="form-label fw-medium text-dark">
-                            <i data-lucide="users" style="width: 16px; height: 16px; margin-right: 0.25rem;"></i>
-                            Maximum Attendees
-                        </label>
-                        {{ form.max_attendees }}
-                        {% if form.max_attendees.errors %}
-                            <div class="text-danger small mt-1">{{ form.max_attendees.errors.0 }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="{{ form.difficulty.id_for_label }}" class="form-label fw-medium text-dark">
-                            Difficulty Level
-                        </label>
-                        {{ form.difficulty }}
-                        {% if form.difficulty.errors %}
-                            <div class="text-danger small mt-1">{{ form.difficulty.errors.0 }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="col-12">
-                        <label for="{{ form.expected_impact.id_for_label }}" class="form-label fw-medium text-dark">
-                            Expected Environmental Impact
-                        </label>
-                        {{ form.expected_impact }}
-                        {% if form.expected_impact.errors %}
-                            <div class="text-danger small mt-1">{{ form.expected_impact.errors.0 }}</div>
-                        {% endif %}
-                    </div>
-
-                    <div class="col-12">
-                        <label for="{{ form.requirements.id_for_label }}" class="form-label fw-medium text-dark">
-                            Requirements & What to Bring
-                        </label>
-                        {{ form.requirements }}
-                        {% if form.requirements.errors %}
-                            <div class="text-danger small mt-1">{{ form.requirements.errors.0 }}</div>
-                        {% endif %}
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Event Image -->
         <div class="col-12">
             <div class="card-custom p-4">
