@@ -11,8 +11,8 @@
                 <i data-lucide="search" style="width: 32px; height: 32px; color: var(--green-600);"></i>
             </div>
         </div>
-        <h1 class="h2 fw-bold text-dark mb-3">Search Eco Content</h1>
-        <p class="text-muted">Find eco actions, uploads, and environmental resources</p>
+        <h1 class="h2 fw-bold text-dark mb-3">Search  Content</h1>
+        <p class="text-muted">Find events, eco actions, uploads, and environmental resources</p>
     </div>
 
     <!-- Search Form -->
@@ -36,12 +36,76 @@
         <div class="mb-4">
             <h3 class="h5 fw-bold text-dark">
                 Search results for "{{ query }}"
-                <span class="text-muted fw-normal">({{ actions|length|add:uploads|length }} results)</span>
+                <span class="text-muted fw-normal">({{ events|length|add:actions|length|add:uploads|length }} results)</span>
             </h3>
         </div>
 
-        {% if actions or uploads %}
+        {% if events or actions or uploads %}
             <div class="row g-4">
+                <!-- Events Results -->
+                {% if events %}
+                    <div class="col-12">
+                        <h4 class="h6 fw-bold text-dark mb-3">
+                            <i data-lucide="calendar" style="width: 16px; height: 16px; margin-right: 0.5rem; color: var(--green-600);"></i>
+                            Events ({{ events|length }})
+                        </h4>
+                        <div class="row g-3 mb-4">
+                            {% for event in events %}
+                                <div class="col-md-6 col-lg-4">
+                                    <div class="card-custom p-4 h-100">
+                                        {% if event.image %}
+                                            <div class="mb-3" style="height: 120px; overflow: hidden; border-radius: 0.5rem;">
+                                                <img src="{{ event.image.url }}" alt="{{ event.title }}" class="w-100 h-100" style="object-fit: cover;">
+                                            </div>
+                                        {% else %}
+                                            <div class="mb-3 d-flex align-items-center justify-content-center" style="height: 120px; background: linear-gradient(135deg, var(--green-100), var(--emerald-100)); border-radius: 0.5rem;">
+                                                <i data-lucide="calendar" style="width: 32px; height: 32px; color: var(--green-600);"></i>
+                                            </div>
+                                        {% endif %}
+                                        
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <small class="text-success fw-medium">{{ event.user.username }}</small>
+                                            <div class="d-flex align-items-center gap-1 small text-muted">
+                                                <i data-lucide="eye" style="width: 14px; height: 14px;"></i>
+                                                <span>{{ event.views }}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <h5 class="fw-bold text-dark mb-2">
+                                            <a href="{% url 'ecoapp:event_detail' event.pk %}" class="text-decoration-none text-dark">
+                                                {{ event.title }}
+                                            </a>
+                                        </h5>
+                                        
+                                        <p class="text-muted small mb-3">{{ event.description|truncatechars:100 }}</p>
+                                        
+                                        <div class="mb-3">
+                                            <div class="d-flex align-items-center gap-2 mb-1 small text-muted">
+                                                <i data-lucide="calendar" style="width: 14px; height: 14px; color: var(--green-500);"></i>
+                                                <span>{{ event.date|date:"M d, Y" }}</span>
+                                            </div>
+                                            {% if event.time %}
+                                                <div class="d-flex align-items-center gap-2 mb-1 small text-muted">
+                                                    <i data-lucide="clock" style="width: 14px; height: 14px; color: var(--green-500);"></i>
+                                                    <span>{{ event.time }}</span>
+                                                </div>
+                                            {% endif %}
+                                            <div class="d-flex align-items-center gap-2 small text-muted">
+                                                <i data-lucide="map-pin" style="width: 14px; height: 14px; color: var(--green-500);"></i>
+                                                <span>{{ event.location }}, {{ event.city }}</span>
+                                            </div>
+                                        </div>
+                                        
+                                        <a href="{% url 'ecoapp:event_detail' event.pk %}" class="btn btn-outline-success btn-sm w-100">
+                                            View Event Details
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+
                 <!-- Eco Actions Results -->
                 {% if actions %}
                     <div class="col-12">
@@ -49,7 +113,7 @@
                             <i data-lucide="activity" style="width: 16px; height: 16px; margin-right: 0.5rem; color: var(--green-600);"></i>
                             Eco Actions ({{ actions|length }})
                         </h4>
-                        <div class="row g-3">
+                        <div class="row g-3 mb-4">
                             {% for action in actions %}
                                 <div class="col-md-6">
                                     <div class="card-custom p-4">
@@ -58,7 +122,11 @@
                                                 <i data-lucide="leaf" style="width: 20px; height: 20px; color: var(--green-600);"></i>
                                             </div>
                                             <div class="flex-grow-1">
-                                                <h5 class="fw-bold text-dark mb-2">{{ action.title }}</h5>
+                                                <h5 class="fw-bold text-dark mb-2">
+                                                    <a href="{% url 'ecoapp:action_detail' action.pk %}" class="text-decoration-none text-dark">
+                                                        {{ action.title }}
+                                                    </a>
+                                                </h5>
                                                 <p class="text-muted small mb-2">{{ action.description|truncatechars:100 }}</p>
                                                 <div class="d-flex align-items-center gap-3 small text-muted">
                                                     <span>
@@ -84,7 +152,7 @@
                     <div class="col-12">
                         <h4 class="h6 fw-bold text-dark mb-3">
                             <i data-lucide="upload" style="width: 16px; height: 16px; margin-right: 0.5rem; color: var(--green-600);"></i>
-                            Uploads ({{ uploads|length }})
+                            Resources ({{ uploads|length }})
                         </h4>
                         <div class="row g-3">
                             {% for upload in uploads %}
@@ -123,8 +191,11 @@
                 <h3 class="h5 fw-semibold text-dark mb-2">No results found</h3>
                 <p class="text-muted mb-4">Try adjusting your search terms or browse our categories</p>
                 <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <a href="{% url 'ecoapp:event_list' %}" class="btn btn-outline-success btn-sm">Browse Events</a>
                     <a href="{% url 'ecoapp:action_list' %}" class="btn btn-outline-success btn-sm">Browse Eco Actions</a>
-                    <a href="{% url 'ecoapp:event_list' %}" class="btn btn-outline-success btn-sm">View Events</a>
+                    {% if user.is_authenticated %}
+                        <a href="{% url 'ecoapp:user_uploads' %}" class="btn btn-outline-success btn-sm">My Uploads</a>
+                    {% endif %}
                 </div>
             </div>
         {% endif %}
@@ -135,24 +206,24 @@
                 <div class="card-custom p-4 text-center">
                     <div class="d-flex justify-content-center mb-3">
                         <div class="p-3 rounded-3" style="background: var(--green-100);">
+                            <i data-lucide="calendar" style="width: 24px; height: 24px; color: var(--green-600);"></i>
+                        </div>
+                    </div>
+                    <h5 class="fw-bold text-dark mb-2">Events</h5>
+                    <p class="text-muted small mb-3">Discover upcoming eco-friendly events near you</p>
+                    <a href="{% url 'ecoapp:event_list' %}" class="btn btn-outline-success btn-sm">Browse Events</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-custom p-4 text-center">
+                    <div class="d-flex justify-content-center mb-3">
+                        <div class="p-3 rounded-3" style="background: var(--green-100);">
                             <i data-lucide="activity" style="width: 24px; height: 24px; color: var(--green-600);"></i>
                         </div>
                     </div>
                     <h5 class="fw-bold text-dark mb-2">Eco Actions</h5>
                     <p class="text-muted small mb-3">Discover environmental activities and initiatives</p>
                     <a href="{% url 'ecoapp:action_list' %}" class="btn btn-outline-success btn-sm">Browse Actions</a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card-custom p-4 text-center">
-                    <div class="d-flex justify-content-center mb-3">
-                        <div class="p-3 rounded-3" style="background: var(--emerald-100);">
-                            <i data-lucide="calendar" style="width: 24px; height: 24px; color: var(--emerald-600);"></i>
-                        </div>
-                    </div>
-                    <h5 class="fw-bold text-dark mb-2">Events</h5>
-                    <p class="text-muted small mb-3">Find upcoming eco-friendly events near you</p>
-                    <a href="{% url 'ecoapp:event_list' %}" class="btn btn-outline-success btn-sm">View Events</a>
                 </div>
             </div>
             <div class="col-md-4">

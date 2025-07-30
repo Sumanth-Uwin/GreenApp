@@ -229,6 +229,7 @@ def search_view(request):
     form = SearchForm(request.GET or None)
     eco_actions = []
     uploads = []
+    events = []
     events = []  # Add this line to store event search results
     query = ''
 
@@ -236,6 +237,12 @@ def search_view(request):
         query = form.cleaned_data['query']
         eco_actions = EcoAction.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
         uploads = Upload.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        events = Event.objects.filter(
+            Q(title__icontains=query) | 
+            Q(description__icontains=query) | 
+            Q(location__icontains=query) |
+            Q(city__icontains=query)
+        ).order_by('-date')
         events = Event.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))  # Add this line for events
 
         if query.strip():
@@ -245,6 +252,7 @@ def search_view(request):
         'form': form,
         'actions': eco_actions,
         'uploads': uploads,
+        'events': events,
         'events': events,  # Pass events to the template
         'query': query,
     })
