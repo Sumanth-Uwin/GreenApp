@@ -230,30 +230,42 @@ def search_view(request):
     eco_actions = []
     uploads = []
     events = []
-    events = []  # Add this line to store event search results
     query = ''
 
     if form.is_valid():
         query = form.cleaned_data['query']
-        eco_actions = EcoAction.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
-        uploads = Upload.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))
+        
+        # Search for EcoActions based on query
+        eco_actions = EcoAction.objects.filter(
+            Q(title__icontains=query) | Q(description__icontains=query)
+        )
+        
+        # Search for User's Own Uploads
+        if request.user.is_authenticated:
+            uploads = Upload.objects.filter(
+                Q(title__icontains=query) | Q(description__icontains=query),
+                user=request.user  # Filter uploads by the logged-in user
+            )
+        
+        # Search for Events based on query
         events = Event.objects.filter(
             Q(title__icontains=query) | 
             Q(description__icontains=query) | 
             Q(location__icontains=query) |
             Q(city__icontains=query)
         ).order_by('-date')
-        events = Event.objects.filter(Q(title__icontains=query) | Q(description__icontains=query))  # Add this line for events
 
         if query.strip():
-            SearchLog.objects.create(user=request.user if request.user.is_authenticated else None, query=query)
+            SearchLog.objects.create(
+                user=request.user if request.user.is_authenticated else None, 
+                query=query
+            )
 
     return render(request, 'ecoapp/search.html', {
         'form': form,
         'actions': eco_actions,
-        'uploads': uploads,
+        'uploads': uploads,  # Display only the logged-in user's uploads
         'events': events,
-        'events': events,  # Pass events to the template
         'query': query,
     })
 

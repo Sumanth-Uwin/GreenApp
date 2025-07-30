@@ -5,7 +5,7 @@
 <p><strong>Category:</strong> {{ action.category.name }}</p>
 <p>{{ action.description }}</p>
 <p><small>Uploaded by: {{ action.user.username }}</small></p>
-<p><small>Uploaded on: {{ action.uploaded_at|date:"M d, Y H:i" }}</small></p>
+<p><small>Uploaded on: {{ action.created_at|date:"M d, Y H:i" }}</small></p>
 
 {% if action.file %}
     <p><a href="{{ action.file.url }}" target="_blank">Download file</a></p>
